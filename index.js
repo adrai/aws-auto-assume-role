@@ -39,8 +39,12 @@ function assumeRole (clb) {
 
 module.exports = assumeRole
 
-if (!require.main) {
+assumeRole.sync = function () {
   const deasync = require('deasync')
   const assumeRoleSync = deasync(assumeRole)
   assumeRoleSync()
+}
+
+if (!require.main) {
+  assumeRole.sync()
 }

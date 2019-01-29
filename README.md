@@ -35,4 +35,22 @@ autoAssume(() => {
     console.log(res)
   })
 })
+
+// or
+
+require('aws-auto-assume-role').sync();
+// your app code here...
+const AWS = require('aws-sdk')
+const DocumentClient = AWS.DynamoDB.DocumentClient
+const ddb = new DocumentClient({ region: process.env.AWS_REGION })
+const params = {
+  TableName: 'my-table',
+  Key: {
+    id
+  }
+}
+ddb.get(params, (err, res) => {
+  console.log(err)
+  console.log(res)
+})
 ```
