@@ -1,6 +1,6 @@
 {
   "name": "aws-auto-assume-role",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Automatically assume appropriate aws role based on your AWS_PROFILE env varriable.",
   "repository": "https://github.com/adrai/aws-auto-assume-role.git",
   "main": "index.js",
