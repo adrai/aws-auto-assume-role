@@ -13,6 +13,21 @@ function assumeRole (clb) {
     ))
     let awsProfileConfig = configIni[`profile ${awsProfile}`]
 
+    if (awsProfileConfig.source_profile) {
+      try {
+        let credentialsIni = ini.parse(fs.readFileSync(
+          `${process.env.HOME}/.aws/credentials`,
+          'utf-8'
+        ))
+        if (credentialsIni && credentialsIni[awsProfileConfig.source_profile] && credentialsIni[awsProfileConfig.source_profile].aws_access_key_id) {
+          AWS.config.update({
+            accessKeyId: credentialsIni[awsProfileConfig.source_profile].aws_access_key_id,
+            secretAccessKey: credentialsIni[awsProfileConfig.source_profile].aws_secret_access_key
+          })
+        }
+      } catch (e) {}
+    }
+
     var sts = new AWS.STS()
     sts.assumeRole({
       RoleArn: awsProfileConfig.role_arn,
