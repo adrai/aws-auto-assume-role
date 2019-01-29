@@ -17,7 +17,7 @@ AWS_PROFILE=my_aws_project node -r aws-auto-assume-role app.js
 ## with touching your code (require yourself)
 
 ```javascript
-const autoAssume = require('my_aws_project')
+const autoAssume = require('aws-auto-assume-role')
 autoAssume(() => {
   // your app code here...
 
